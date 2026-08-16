@@ -4,7 +4,7 @@ Monitoramento holístico **self-hosted**: dashboard PWA, agentes leves e plugins
 
 Este repositório é o canal **público de distribuição** (releases e documentação de instalação). Os binários ficam em [Releases](https://github.com/lucresce/holistic-health-bytes-releases/releases); a imagem Docker é publicada no GHCR.
 
-**Última versão documentada neste README:** `v1.0.0-rc.20`  
+**Última versão documentada neste README:** `v1.0.0-rc.32`  
 Sempre prefira a tag do [latest release](https://github.com/lucresce/holistic-health-bytes-releases/releases/latest).
 
 ---
@@ -34,7 +34,7 @@ Sempre prefira a tag do [latest release](https://github.com/lucresce/holistic-he
 ### Início rápido com Docker
 
 ```bash
-export HHB_VERSION=v1.0.0-rc.20   # ou a tag do latest release
+export HHB_VERSION=v1.0.0-rc.32   # ou a tag do latest release
 
 docker pull ghcr.io/lucresce/holistic-health-bytes:${HHB_VERSION}
 
@@ -79,7 +79,7 @@ Abra a `public_url` e crie a conta **admin** no primeiro acesso.
 ### Atualizar o servidor
 
 ```bash
-export HHB_VERSION=v1.0.0-rc.20   # nova tag
+export HHB_VERSION=v1.0.0-rc.32   # nova tag
 docker pull ghcr.io/lucresce/holistic-health-bytes:${HHB_VERSION}
 docker stop hhb && docker rm hhb
 # rode de novo o mesmo docker run com a nova tag
@@ -106,10 +106,10 @@ Healthchecks: `GET /healthz` (liveness), `GET /readyz` (readiness), `GET /api/v1
 
 | Tag | Uso |
 |-----|-----|
-| `ghcr.io/lucresce/holistic-health-bytes:v1.0.0-rc.20` | versão pinada |
+| `ghcr.io/lucresce/holistic-health-bytes:v1.0.0-rc.32` | versão pinada |
 | `ghcr.io/lucresce/holistic-health-bytes:latest` | última publicada |
 
-Plataformas: `linux/amd64` e `linux/arm64`.
+Plataformas: `linux/amd64`, `linux/arm64` e agente `windows/amd64`.
 
 Layout na imagem:
 
@@ -122,7 +122,7 @@ Layout na imagem:
 | `/app/bin/plugins/*` | plugins embutidos |
 
 ```bash
-docker pull ghcr.io/lucresce/holistic-health-bytes:v1.0.0-rc.20
+docker pull ghcr.io/lucresce/holistic-health-bytes:v1.0.0-rc.32
 ```
 
 ### Binários no GitHub Release
@@ -132,8 +132,10 @@ Publicados em cada tag neste repositório:
 | Asset | Arch |
 |-------|------|
 | `hhb-server-linux-{amd64,arm64}` | servidor bare-metal |
-| `hhb-agent-linux-{amd64,arm64}` | agente |
+| `hhb-agent-linux-{amd64,arm64}` | agente Linux |
+| `hhb-agent-windows-amd64` | agente Windows (sem self-update; reinstale via script) |
 | `hhb-plugin-*-linux-{amd64,arm64}` | plugins (`host`, `updates`, `tcpcheck`, `k8s`, `logwatch`, `memory_analysis`, `httpcheck`, `process`, `systemd`, `statuspage`, …) |
+| `hhb-plugin-*-windows-amd64` | subset compatível (sem `systemd`/`updates`) |
 
 Lista e download: [Releases](https://github.com/lucresce/holistic-health-bytes-releases/releases).
 
@@ -145,6 +147,8 @@ O servidor Holistic usa a API deste repo para servir `/api/v1/agent/download` e 
 
 1. No dashboard: **+ Adicionar** servidor  
 2. **Instalar manualmente** (recomendado): execute o script gerado no host  
+   - Linux: script bash + systemd  
+   - Windows: `install-script?os=windows` (PowerShell + serviço) — ver docs do produto  
 3. Aguarde status **online**
 
 O script baixa agente/plugins a partir do seu servidor; o servidor obtém os binários deste Release quando necessário.
