@@ -4,7 +4,7 @@ Monitoramento holístico **self-hosted**: dashboard PWA, agentes leves e plugins
 
 Este repositório é o canal **público de distribuição** (releases e documentação de instalação). Os binários ficam em [Releases](https://github.com/lucresce/holistic-health-bytes-releases/releases); a imagem Docker é publicada no GHCR.
 
-**Última versão documentada neste README:** `v1.0.0-rc.66`  
+**Última versão documentada neste README:** `v1.0.0-rc.67`  
 Sempre prefira a tag do [latest release](https://github.com/lucresce/holistic-health-bytes-releases/releases/latest).
 
 ---
@@ -34,7 +34,7 @@ Sempre prefira a tag do [latest release](https://github.com/lucresce/holistic-he
 ### Início rápido com Docker
 
 ```bash
-export HHB_VERSION=v1.0.0-rc.66   # ou a tag do latest release
+export HHB_VERSION=v1.0.0-rc.67   # ou a tag do latest release
 
 docker pull ghcr.io/lucresce/holistic-health-bytes:${HHB_VERSION}
 
@@ -79,7 +79,7 @@ Abra a `public_url` e crie a conta **admin** no primeiro acesso.
 ### Atualizar o servidor
 
 ```bash
-export HHB_VERSION=v1.0.0-rc.66   # nova tag
+export HHB_VERSION=v1.0.0-rc.67   # nova tag
 docker pull ghcr.io/lucresce/holistic-health-bytes:${HHB_VERSION}
 docker stop hhb && docker rm hhb
 # rode de novo o mesmo docker run com a nova tag
@@ -106,7 +106,7 @@ Healthchecks: `GET /healthz` (liveness), `GET /readyz` (readiness), `GET /api/v1
 
 | Tag | Uso |
 |-----|-----|
-| `ghcr.io/lucresce/holistic-health-bytes:v1.0.0-rc.66` | versão pinada |
+| `ghcr.io/lucresce/holistic-health-bytes:v1.0.0-rc.67` | versão pinada |
 | `ghcr.io/lucresce/holistic-health-bytes:latest` | última publicada |
 
 Plataformas: `linux/amd64`, `linux/arm64` e agente `windows/amd64`.
@@ -122,7 +122,7 @@ Layout na imagem:
 | `/app/bin/plugins/*` | plugins embutidos |
 
 ```bash
-docker pull ghcr.io/lucresce/holistic-health-bytes:v1.0.0-rc.66
+docker pull ghcr.io/lucresce/holistic-health-bytes:v1.0.0-rc.67
 ```
 
 ### Binários no GitHub Release
